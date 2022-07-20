@@ -1,34 +1,31 @@
-def binarySearch(arr, x):
-    l = 0
-    r = len(arr)
-    while l <= r:
-        m = l + ((r - l) // 2)
+# Binary Search in python
 
-        res = (x == arr[m])
 
-        # Check if x is present at mid
-        if res == 0:
-            return m - 1
+def binarySearch(array, x, low, high):
+    while low <= high:
 
-        # If x greater, ignore left half
-        if res > 0:
-            l = m + 1
+        mid = low + (high - low) // 2
 
-        # If x is smaller, ignore right half
+        if array[mid] == x:
+            return mid
+
+        elif array[mid] < x:
+            low = mid + 1
+
         else:
-            r = m - 1
+            high = mid - 1
 
     return -1
 
 
-# Driver Code
-if __name__ == "__main__":
+if __name__ == '__main__':
 
-    arr = ["contribute", "prayer", "ide", "practice"];
-    x = "ide"
-    result = binarySearch(arr, x)
+    array = [3, 4, 5, 6, 7, 8, 9]
+    x = 4
 
-    if result == -1:
-        print("Element not present")
+    result = binarySearch(array, x, 0, len(array) - 1)
+
+    if result != -1:
+        print("Element is present at index " + str(result))
     else:
-        print("Element found at index", result)
+        print("Not found")
